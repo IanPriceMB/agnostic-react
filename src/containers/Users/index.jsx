@@ -9,8 +9,8 @@ export default () => {
   const user = useContext(UserContext);
   let { userType } = useParams();
   const [users, setUsers] = useState();
-  const [refresh, toggleRefresh] = useUserQuery(user, `/users?type=${userType}`, setUsers);
-  const handleRefresh = () => toggleRefresh(!refresh);
+  const refresh = useUserQuery(user, `/users?type=${userType}`, setUsers);
+  const handleRefresh = () => refresh();
 
   if (!user) return 'Loading user...'
   return (

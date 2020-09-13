@@ -6,6 +6,8 @@ export default (user, endpoint, cb) => {
   const dispatch = useDispatch();
   const [refresh, toggleRefresh] = useState(true);
 
+  const handleRefresh = () => toggleRefresh(!refresh);
+
   useEffect(() => {
     (async() => {
       try {
@@ -20,5 +22,5 @@ export default (user, endpoint, cb) => {
     })();
   }, [user, endpoint, cb, dispatch, refresh]);
 
-  return [refresh, toggleRefresh];
+  return handleRefresh;
 };
