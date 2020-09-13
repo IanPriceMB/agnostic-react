@@ -3,9 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { closeNotificationBanner } from '../../redux/notification/actions';
 import './index.scss';
 
-/**
- * Handle all user notifications
- */
 export default () => {
   const dispatch = useDispatch();
   const { message, type } = useSelector(({ notification }) => notification);

@@ -1,3 +1,9 @@
 import React from 'react';
+import { NotificationBanner } from '../../containers';
 
-export default () => <h1>Agnostic React CRUD</h1>
+export default () => (
+  <div>
+    <h1>Agnostic React CRUD</h1>  
+    <NotificationBanner />
+  </div>
+)

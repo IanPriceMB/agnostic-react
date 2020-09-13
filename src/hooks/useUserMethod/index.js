@@ -8,8 +8,10 @@ export default (userMethod, endpoint, cb) => {
   useEffect(() => {
     (async() => {
       try {
-        const data = await userMethod(endpoint); 
-        if (cb) cb(data); 
+        if(typeof userMethod === 'function' ) {
+          const data = await userMethod(endpoint); 
+          if (cb) cb(data); 
+        }
       } catch (error) {
         console.log(error);
         dispatch(sendErrorMessage(`Error: There was an error processing the data.`));

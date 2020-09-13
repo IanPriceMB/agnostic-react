@@ -12,17 +12,17 @@ export default () => {
         </header>
         <Switch>
           <Route exact path="/sign-in" component={SignIn} />
+          <Route exact path="/">
+            <Redirect to="/sign-in" />
+          </Route>
           <Route path="/">
             <UserContext>
               <main className="app__main">
               <Switch>
-                <Route path="/users" component={Users} />
-                <Route exact path="/">
-                  <Redirect to="/users" />
-                </Route>
+                <Route path="/:userType" component={Users} />
               </Switch>
               </main>
-            </UserContext>  
+            </UserContext>
           </Route>
         </Switch>
       </Router>

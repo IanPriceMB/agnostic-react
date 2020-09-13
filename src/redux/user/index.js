@@ -14,6 +14,7 @@ export default function(state = initialState, { type, payload }) {
   switch(type) {
     case SET_USER:
       return {
+        ...state,
         ...payload,
       };
     case SET_USER_LOADING:
