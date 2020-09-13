@@ -10,7 +10,7 @@ export default class User {
   };
 
   // The try catch for error handleing happens at the top level
-  // See src/hooks/useUserMethod
+  // See src/hooks/useUserQuery
   async get(endpoint){
     const res = await getData(endpoint);
     const data = await res.json();

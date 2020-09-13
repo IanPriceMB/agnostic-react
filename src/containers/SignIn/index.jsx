@@ -5,7 +5,6 @@ import { setUser } from '../../redux/user/actions';
 
 export default () => {
   const dispatch = useDispatch();
-
   const handleUserClick = () => { dispatch(setUser({ userType: 'user' })) };
   const handleAdminClick = () => { dispatch(setUser({ userType: 'admin' })) };
   const handleSuperAdminClick = () => { dispatch(setUser({ userType: 'superAdmin' })) };

@@ -19,12 +19,10 @@ router.get('/', (req, res, next) => {
       users = basicUsers.filter(ele => ele.userType === 'user').filter(ele => !ele.deleted);
       break;
   };
-
   res.send({
     count: users.length,
     users,
   });
-  
 });
 
 router.post('/', (req, res, next) => {
@@ -35,10 +33,10 @@ router.post('/', (req, res, next) => {
   if (!userId || !userName || !userType) {
     res.status(500).send({ error: 'Missing properties.'});
     return;
-  } else if (access === 'users' && userType !== 'user') {
+  } else if (access === 'user' && userType !== 'user') {
     res.status(500).send({ error: 'Not authorized to create this type of user.'});
     return;
-  } else if (access === 'admins' && userType === 'superAdmin') {
+  } else if (access === 'admin' && userType === 'superAdmin') {
     res.status(500).send({ error: 'Not authorized to create this type of user.'});
     return;
   } else {

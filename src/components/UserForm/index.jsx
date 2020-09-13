@@ -5,7 +5,7 @@ export default ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
       <label>User Name:</label>
       <input type="text" placeholder="name" name="userName" ref={register({
         required: 'Name is required.', 

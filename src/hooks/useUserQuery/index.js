@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sendErrorMessage } from '../../redux/notification/actions';
 
 export default (user, endpoint, cb) => {
   const dispatch = useDispatch();
+  const [refresh, toggleRefresh] = useState(true);
 
   useEffect(() => {
     (async() => {
@@ -17,6 +18,7 @@ export default (user, endpoint, cb) => {
         dispatch(sendErrorMessage(`Error: There was an error processing the data.`));
       }
     })();
-  }, [user, endpoint, cb, dispatch]);
+  }, [user, endpoint, cb, dispatch, refresh]);
 
+  return [refresh, toggleRefresh];
 };

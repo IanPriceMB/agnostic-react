@@ -9,13 +9,15 @@ export default () => {
   const user = useContext(UserContext);
   let { userType } = useParams();
   const [users, setUsers] = useState();
-  useUserQuery(user, `/users?type=${userType}`, setUsers);
+  const [refresh, toggleRefresh] = useUserQuery(user, `/users?type=${userType}`, setUsers);
+  const handleRefresh = () => toggleRefresh(!refresh);
 
   if (!user) return 'Loading user...'
   return (
     <div>
       <UsersMenu user={user}/>
       <UsersSectionHeader count={users ? users.count : null}/>
+      <button onClick={handleRefresh}>Refresh</button>
       <UsersList users={users ? users.users : []} user={user} />
       <Route path={`/:userType/create`} component={AddUserModal} />
       <Route path={`/:userType/update/:userId`} component={UpdateUserPanel} />

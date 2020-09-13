@@ -6,7 +6,7 @@ import './index.scss';
 export default () => {
   const dispatch = useDispatch();
   const { message, type } = useSelector(({ notification }) => notification);
-  const handleClose = () => dispatch(closeNotificationBanner())
+  const handleClose = () => dispatch(closeNotificationBanner());
 
   if (!message) return null;
   return (
