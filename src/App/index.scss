@@ -1,0 +1,17 @@
+.app {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  &__header {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &__main {
+    padding-top: 100px;
+    height: calc(100% - 100px);
+  }
+}

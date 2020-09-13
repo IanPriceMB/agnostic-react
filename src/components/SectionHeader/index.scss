@@ -1,0 +1,14 @@
+.section-header {
+  display: flex;
+  justify-content: flex-start;
+  &__headline {
+    width: 400px;
+  }
+  &__count {
+    border-radius: 50%;
+    background-color: navy;
+    color: white;
+    padding: 5px 10px;
+    margin-left: 24px;
+  }
+}

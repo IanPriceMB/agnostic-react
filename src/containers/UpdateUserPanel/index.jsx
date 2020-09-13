@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Panel, UserForm } from '../../components';
 import { UserContext } from '../UserContext';
+import { Panel, UserForm } from '../../components';
 
 export default () => {
   const { userId, userType } = useParams();
   const user = useContext(UserContext);
+  
   const handleSubmit = (data) => { user.put(`/users/${userId}?access=${user._userType}`, data) };
   
   return (

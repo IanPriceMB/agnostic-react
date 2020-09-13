@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
-import { Modal } from '../../components';
 import { useHistory, useParams } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import { Modal } from '../../components';
 
 export default () => {
   const history = useHistory();
   const { userId, userType } = useParams();
   const user = useContext(UserContext);
+  
   const handleCancel = () => history.goBack();
   const handleConfirm = () => { user.delete(`/users/${userId}?access=${user._userType}`); history.goBack(); };
 

@@ -1,27 +1,34 @@
 import React from 'react';
-import { Menu } from '..';
 import { Link } from 'react-router-dom';
+import { Menu } from '..';
+import './index.scss';
 
 export default ({ user }) => (
   <Menu>
-    <Link to="/users">
-      <button>
-        Users
-      </button>
-    </Link>
-    {(user._userType === 'admin' || user._userType === 'superAdmin') && (
-      <Link to="/admins">
+    <div className="user-menu__item">
+      <Link to="/users">
         <button>
-          Admins
+          Users
         </button>
       </Link>
+    </div>
+    {(user._userType === 'admin' || user._userType === 'superAdmin') && (
+      <div className="user-menu__item">
+        <Link to="/admins">
+          <button>
+            Admins
+          </button>
+        </Link>
+      </div>
     )}
     {user._userType === 'superAdmin' && (
-      <Link to="/super-admins">
-        <button>
-          Super Admins
-        </button>
-      </Link>
+      <div className="user-menu__item">
+        <Link to="/super-admins">
+          <button>
+            Super Admins
+          </button>
+        </Link>
+      </div>
     )}
   </Menu>
 )

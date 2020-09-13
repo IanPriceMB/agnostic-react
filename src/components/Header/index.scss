@@ -1,0 +1,9 @@
+.header {
+  background-color: navy;
+
+  &__title {
+    margin: 0;
+    padding: 24px 12px;
+    color: white;
+  }
+}

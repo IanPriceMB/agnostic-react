@@ -1,0 +1,19 @@
+.users {
+  display: flex;
+
+  &__info {
+    display: flex column;
+    padding: 0 24px;;
+  }
+
+  &__refresh {
+    padding: 12px;
+  }
+
+  &__panel {
+    position: absolute;
+    z-index: 2;
+    top: 100px;
+    right: 0px;
+  }
+}

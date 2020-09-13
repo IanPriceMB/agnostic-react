@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { UserContext, Users, SignIn, AddUserModal, DeleteUserModal } from '../containers';
 import { Header } from '../components';
-import { UserContext, Users, SignIn } from '../containers';
+import './index.scss'
 
 export default () => {
   return (
@@ -25,6 +26,8 @@ export default () => {
             </UserContext>
           </Route>
         </Switch>
+        <Route path={`/:userType/create`} component={AddUserModal} />
+        <Route path={`/:userType/delete/:userId`} component={DeleteUserModal} />
       </Router>
     </div>
   );

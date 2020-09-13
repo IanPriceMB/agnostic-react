@@ -1,13 +1,14 @@
 import React from 'react';
-import { SectionHeader } from '..';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { SectionHeader } from '..';
+import './index.scss';
 
 export default ({ count }) => {
   let match = useRouteMatch();
   return (
   <SectionHeader title="Users" count={count}>
     <Link to={`${match.url}/create`}>
-      <button>
+      <button className="users-section-header__add">
         Add Another User
       </button>
     </Link>
