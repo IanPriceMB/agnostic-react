@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { UserContext } from '../UserContext';
 
-export default () => {
-  const user = useContext(UserContext);
+export default ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
-
-  const onSubmit = (data) => { user.post(`/users?access=${user._userType}`, data)}
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -32,5 +28,5 @@ export default () => {
       {errors.userType && <p>{errors.userType.message}</p>}
       <input type="submit" />
     </form>
-  )
-}
+  );
+};

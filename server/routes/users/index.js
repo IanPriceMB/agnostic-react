@@ -1,25 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const { users: basicUsers, admins, superAdmins } = require('./users');
+const basicUsers = require('./users');
 
 router.get('/', (req, res, next) => {
-  
-  // Return users based on user credetials
-  // normally this would be handeled by a db and in a more secure manner
-  const { type = 'users' } = req.query;
+  const { type } = req.query;
   let users = [];
   switch (type) {
     case 'users':
-      users = [...basicUsers];
+      users = basicUsers.filter(ele => ele.userType === 'user').filter(ele => !ele.deleted);
       break;
     case 'admins':
-      users = [...admins];
+      users = basicUsers.filter(ele => ele.userType === 'admin').filter(ele => !ele.deleted);
       break;
     case 'super-admins':
-      users = [...superAdmins];
+      users = basicUsers.filter(ele => ele.userType === 'superAdmin').filter(ele => !ele.deleted);
       break;
     default:
-      users = [...basicUsers];
+      users = basicUsers.filter(ele => ele.userType === 'user').filter(ele => !ele.deleted);
       break;
   };
 
@@ -33,7 +30,7 @@ router.get('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const { access } = req.query;
   const { userName, userType } = req.body;
-  const userId = [...basicUsers, ...admins, ...superAdmins].length + 1;
+  const userId = basicUsers.length + 1;
 
   if (!userId || !userName || !userType) {
     res.status(500).send({ error: 'Missing properties.'});
@@ -45,23 +42,68 @@ router.post('/', (req, res, next) => {
     res.status(500).send({ error: 'Not authorized to create this type of user.'});
     return;
   } else {
-    switch (userType) {
-      case 'user':
-       basicUsers.push({ userId, userName, userType });
-        break;
-      case 'admin':
-       admins.push({ userId, userName, userType });
-        break;
-      case 'superAdmin':
-       superAdmins.push({ userId, userName, userType });
-        break;
-      default:
-        break;
-    };
-    
+    basicUsers.push({ userId, userName, userType });    
     res.send({ success: true });
+  };
+
+});
+
+router.put('/:userId', (req, res, next) => {
+  const { access } = req.query;
+  const { userName, userType } = req.body;
+  const { userId } = req.params;
+
+  if (!userId || !access) {
+    res.status(500).send({ error: 'Missing id or validation.'});
+    return;
+  } else if (!userName && !userType) {
+    res.status(500).send({ error: 'No update given.'});
+    return;
   }
 
-})
+  const user = basicUsers.filter(ele => ele.userId === parseInt(userId))[0];
+  
+  if (!user) {
+    res.status(500).send({ error: 'No user found for that id.'});
+    return;
+  } else if (access === 'user' && user.userType !== 'user') {
+    res.status(500).send({ error: 'Not authorized to update this type of user.'});
+    return;
+  } else if (access === 'admin' && user.userType === 'superAdmin') {
+    res.status(500).send({ error: 'Not authorized to update this type of user.'});
+    return;
+  } else {
+    basicUsers.splice(user.userId - 1, 1, { ...user, userName, userType });
+    res.send({ success: true });
+  };
+
+});
+
+router.delete('/:userId', (req, res, next) => {
+  const { access } = req.query;
+  const { userId } = req.params;
+
+  if (!userId || !access) {
+    res.status(500).send({ error: 'Missing id or validation.'});
+    return;
+  };
+
+  const user = basicUsers.filter(ele => ele.userId === parseInt(userId))[0];
+  
+  if (!user) {
+    res.status(500).send({ error: 'No user found for that id.'});
+    return;
+  } else if (access === 'user' && user.userType !== 'user') {
+    res.status(500).send({ error: 'Not authorized to delete this type of user.'});
+    return;
+  } else if (access === 'admin' && user.userType === 'superAdmin') {
+    res.status(500).send({ error: 'Not authorized to delete this type of user.'});
+    return;
+  } else {
+    basicUsers.splice(user.userId - 1, 1, { ...user, deleted: true });
+    res.send({ success: true });
+  };
+
+});
 
 module.exports = router;

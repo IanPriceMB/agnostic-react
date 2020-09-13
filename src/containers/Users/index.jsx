@@ -1,23 +1,25 @@
 import React, { useState, useContext } from 'react';
-import { Menu, Grid, SectionHeader } from '../../components';
+import { UsersMenu, UsersList, UsersSectionHeader } from '../../components';
+import { AddUserModal, UpdateUserPanel, DeleteUserModal } from '..'
 import { UserContext } from '../UserContext';
-import { useUserMethod } from '../../hooks';
-import { useParams } from 'react-router-dom';
-import { UserForm } from '..';
+import { useUserQuery } from '../../hooks';
+import { Route, useParams } from 'react-router-dom';
 
 export default () => {
   const user = useContext(UserContext);
-  const { userType } = useParams();
+  let { userType } = useParams();
   const [users, setUsers] = useState();
-  useUserMethod(user && user.get, `/users?type=${userType}`, setUsers);
+  useUserQuery(user, `/users?type=${userType}`, setUsers);
 
   if (!user) return 'Loading user...'
   return (
     <div>
-      <Menu user={user}/>
-      <SectionHeader count={users ? users.count : null}/>
-      <UserForm />
-      <Grid users={users ? users.users : []}/>
+      <UsersMenu user={user}/>
+      <UsersSectionHeader count={users ? users.count : null}/>
+      <UsersList users={users ? users.users : []} user={user} />
+      <Route path={`/:userType/create`} component={AddUserModal} />
+      <Route path={`/:userType/update/:userId`} component={UpdateUserPanel} />
+      <Route path={`/:userType/delete/:userId`} component={DeleteUserModal} />
     </div>
   )
 }

@@ -1,3 +1,7 @@
 import React from 'react';
 
-export default ({ count }) => <h3>Users <span>{count}</span></h3>
+export default ({ title, count, children }) => (
+  <h3>{title} <span>{count}</span>
+    {children}
+  </h3>
+);

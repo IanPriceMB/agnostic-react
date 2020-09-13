@@ -1,5 +1,5 @@
-import useUserMethod from './useUserMethod';
+import useUserQuery from './useUserQuery';
 
 export {
-  useUserMethod,
+  useUserQuery,
 };

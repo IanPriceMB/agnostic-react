@@ -1,4 +1,4 @@
-import { getData, postData } from '../../utils';
+import { getData, postData, putData, deleteData } from '../../utils';
 import { sendErrorMessage, sendUserMessage } from '../../redux/notification/actions';
 
 export default class User {
@@ -21,7 +21,7 @@ export default class User {
     try {
       const res = await postData(endpoint, body); 
       const data = await res.json();
-      if (data.error) this._dispatch(sendErrorMessage(`Error: There was an error creating the data.`));
+      if (data.error) this._dispatch(sendErrorMessage(`Error: ${data.error}`));
       if (data.success) this._dispatch(sendUserMessage(`Sucessfully created!`));
       console.log(data)
     } catch (error) {
@@ -30,26 +30,28 @@ export default class User {
     };
   };
 
-  // async put(endpoint, body) {
-  //   try {
-  //     const res = await putData(endpoint, body); 
-  //     const data = await res.json();
-  //     if (data) this._dispatch(sendUserMessage(`Sucessfully updated!`));
-  //   } catch (error) {
-  //     console.error(error);
-  //     this._dispatch(sendErrorMessage(`Error: There was an error updating the data.`));
-  //   };
-  // };
+  async put(endpoint, body) {
+    try {
+      const res = await putData(endpoint, body); 
+      const data = await res.json();
+      if (data.error) this._dispatch(sendErrorMessage(`Error: ${data.error}`));
+      if (data.success) this._dispatch(sendUserMessage(`Sucessfully updated!`));
+    } catch (error) {
+      console.error(error);
+      this._dispatch(sendErrorMessage(`Error: There was an error updating the data.`));
+    };
+  };
 
-  // async delete(endpoint) {
-  //   try {
-  //     const res = await deleteData(endpoint); 
-  //     const data = await res.json();
-  //     if (data) this._dispatch(sendUserMessage(`Sucessfully deleted!`));
-  //   } catch (error) {
-  //     console.error(error);
-  //     this._dispatch(sendErrorMessage(`Error: There was an error deleting the data.`));
-  //   };
-  // };
+  async delete(endpoint) {
+    try {
+      const res = await deleteData(endpoint); 
+      const data = await res.json();
+      if (data.error) this._dispatch(sendErrorMessage(`Error: ${data.error}`));
+      if (data.success) this._dispatch(sendUserMessage(`Sucessfully deleted!`));
+    } catch (error) {
+      console.error(error);
+      this._dispatch(sendErrorMessage(`Error: There was an error deleting the data.`));
+    };
+  };
 
 };

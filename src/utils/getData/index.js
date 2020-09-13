@@ -1,3 +1,3 @@
 import { basicFetch } from '..';
 
-export default (endpoint, config) => basicFetch(endpoint, { method: 'GET', ...config }) 
+export default (endpoint) => basicFetch(endpoint, { method: 'GET' }) 
