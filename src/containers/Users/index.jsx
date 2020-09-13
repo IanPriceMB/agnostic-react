@@ -9,9 +9,7 @@ import './index.scss';
 export default () => {
   let { userType } = useParams();
   const user = useContext(UserContext);
-
-  const [users, setUsers] = useState();
-  const refresh = useUserQuery(user, `/users?type=${userType}`, setUsers);
+  const [refresh, users] = useUserQuery(user, `/users?type=${userType}`);
 
   const handleRefresh = () => refresh();
 

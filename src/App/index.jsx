@@ -23,11 +23,11 @@ export default () => {
                 <Route path="/:userType" component={Users} />
               </Switch>
               </main>
+              <Route path={`/:userType/create`} component={AddUserModal} />
+              <Route path={`/:userType/delete/:userId`} component={DeleteUserModal} />
             </UserContext>
           </Route>
         </Switch>
-        <Route path={`/:userType/create`} component={AddUserModal} />
-        <Route path={`/:userType/delete/:userId`} component={DeleteUserModal} />
       </Router>
     </div>
   );

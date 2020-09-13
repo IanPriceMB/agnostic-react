@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setUser } from '../../redux/user/actions';
+import './index.scss';
 
 export default () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export default () => {
   const handleSuperAdminClick = () => { dispatch(setUser({ userType: 'superAdmin' })) };
 
   return (
-    <div>
+    <div className="sign-in">
       <Link to="/users" >
         <button
           onClick={handleUserClick}
