@@ -1,0 +1,18 @@
+.notification-banner {
+  font-size: 36px;
+  text-align: center;
+  color: white;
+  padding: 24px 0;
+  width: 100%;
+  
+  &--error {
+    background-color: red;
+  }
+  &--other {
+    background-color: green;
+  }
+  &__close-button {
+    position: absolute;
+    right: 12px;
+  }
+}
