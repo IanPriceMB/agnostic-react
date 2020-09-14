@@ -21,13 +21,14 @@ export default (endpoint, params, message) => {
   const handleRefresh = () => toggleRefresh(!refresh);
   
   useEffect(() => {
+    let current = true;
     const query = queryString.stringify(params());
     (async() => {
       try {
         setIsLoading(true)
         const res = await getData(`${endpoint}?${query}`);
         const data = await res.json();
-        setData(data);
+        if(current) setData(data);
       } catch (e) {
         console.log(e);
         setError(true);
@@ -36,6 +37,11 @@ export default (endpoint, params, message) => {
         setIsLoading(false);
       }
     })();
+
+    // If the parameters change mid flight this will cut the state update
+    return () => {
+      current = false;
+    }
   }, [endpoint, params, setData, refresh, message, errorMessageRef]);
 
 
