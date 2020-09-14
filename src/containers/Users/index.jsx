@@ -1,16 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useCallback } from 'react';
 import { Route, useParams } from 'react-router-dom';
 import { useUserQuery } from '../../hooks';
-import { UserContext } from '../UserContext';
+import useUser from '../UserContext';
 import { UpdateUserPanel } from '..'
 import { UsersMenu, UsersList, UsersSectionHeader } from '../../components';
 import './index.scss';
 
 export default () => {
-  let { userType } = useParams();
-  const user = useContext(UserContext);
-  const [refresh, users] = useUserQuery(user, `/users?type=${userType}`);
+  const { userType } = useParams();
+  const user = useUser();
 
+  // Object reference equality is always false so we use call back to memoize the value before
+  // passing it to the hook. Then it is executed in hook as a function.
+  const params = useCallback(() => ({ type: userType }), [userType]);
+  const [refresh, users] = useUserQuery(user, `/users`, params);
   const handleRefresh = () => refresh();
 
   if (!user) return 'Loading user...'

@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { UserContext } from '../UserContext';
+import useUser from '../UserContext';
 import { Modal, UserForm } from '../../components';
 
 export default () => {
   const history = useHistory();
   const { userType } = useParams();
-  const user = useContext(UserContext);
+  const user = useUser();
 
   const handleSubmit = (data) => { user.post(`/users?access=${user._userType}`, data);  history.goBack(); };
   

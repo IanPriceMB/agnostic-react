@@ -1,12 +1,11 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { closeNotificationBanner } from '../../redux/notification/actions';
+import { useSelector } from 'react-redux';
+import { useNotification } from '../../hooks';
 import './index.scss';
 
 export default () => {
-  const dispatch = useDispatch();
   const { message, type } = useSelector(({ notification }) => notification);
-  const handleClose = () => dispatch(closeNotificationBanner());
+  const { close } = useNotification();
 
   if (!message) return null;
   return (
@@ -19,7 +18,7 @@ export default () => {
       <button 
         className="notification-banner__close-button" 
         id="NotificationBannerCloseButton"
-        onClick={handleClose}
+        onClick={close}
       >close</button>
     </div>
   );

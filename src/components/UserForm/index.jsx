@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 
 export default ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
       <label>User Name:</label>

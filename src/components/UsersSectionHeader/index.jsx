@@ -4,7 +4,7 @@ import { SectionHeader } from '..';
 import './index.scss';
 
 export default ({ count }) => {
-  let match = useRouteMatch();
+  const match = useRouteMatch();
   return (
   <SectionHeader title="Users" count={count}>
     <Link to={`${match.url}/create`}>

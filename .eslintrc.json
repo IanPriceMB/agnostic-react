@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "plugins": ["react", "jsx-a11y"],
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "import/no-cycle": "off",
+    "jsx-a11y/label-has-associated-control": "off"
+  }
+}

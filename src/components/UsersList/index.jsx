@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
+import useUser from '../../containers/UserContext';
 
-export default ({ users, user }) => {
-  let match = useRouteMatch();
+export default ({ users }) => {
+  const match = useRouteMatch();
+  const user = useUser();
   return (
   <ul>
     {users && users.map(({ userName, userId, userType }) => (
