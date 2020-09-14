@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 export default ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
   return (
-    <form onSubmit={handleSubmit(onSubmit)} autocomplete="off">
+    <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <label>User Name:</label>
       <input type="text" placeholder="name" name="userName" ref={register({
         required: 'Name is required.', 

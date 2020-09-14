@@ -1,5 +1,9 @@
-import User from './User';
+import Delete from './Delete';
+import Post from './Post';
+import Put from './Put';
 
 export {
-  User, 
+  Delete,
+  Post,
+  Put,
 };

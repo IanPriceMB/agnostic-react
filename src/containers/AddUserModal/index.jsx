@@ -1,17 +1,19 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import useUser from '../UserContext';
+import { useHistory } from 'react-router-dom';
+import { useNotificationAction, useUserStore } from '../../hooks';
 import { Modal, UserForm } from '../../components';
+import { Post } from '../../classes';
 
 export default () => {
   const history = useHistory();
-  const { userType } = useParams();
-  const user = useUser();
+  const user = useUserStore();
+  const { errorMessage, successMessage } = useNotificationAction();
+  const post = new Post(`/users`, { access: user.userType }, errorMessage, successMessage); 
 
-  const handleSubmit = (data) => { user.post(`/users?access=${user._userType}`, data);  history.goBack(); };
+  const handleSubmit = (data) => { post.call(data); history.goBack(); };
   
   return (
-    <Modal closeUrl={`/${userType}`}>
+    <Modal >
       <h3>Create a New User!</h3>
       <UserForm onSubmit={handleSubmit} />
     </Modal>

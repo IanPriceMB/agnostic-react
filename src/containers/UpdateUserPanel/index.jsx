@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import useUser from '../UserContext';
+import { useNotificationAction, useUserStore } from '../../hooks';
+import { Put } from '../../classes';
 import { Panel, UserForm } from '../../components';
 
 export default () => {
   const { userId, userType } = useParams();
-  const user = useUser();
+  const user = useUserStore();
+  const { errorMessage, successMessage } = useNotificationAction();
+  const put = new Put(`/users/${userId}`, { access: user.userType }, errorMessage, successMessage)
   
-  const handleSubmit = (data) => { user.put(`/users/${userId}?access=${user._userType}`, data) };
+  const handleSubmit = (data) => put.call(data);
   
   return (
     <Panel closeUrl={`/${userType}`}>

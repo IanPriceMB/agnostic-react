@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import store from './redux';
-import { Provider } from 'react-redux';
+import { NotificationProvider, UserProvider } from './hooks'
 import './index.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <NotificationProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </NotificationProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

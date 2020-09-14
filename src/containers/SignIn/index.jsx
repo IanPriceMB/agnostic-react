@@ -1,15 +1,14 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setUser } from '../../redux/user/actions';
+import { useUserAction } from '../../hooks';
 import './index.scss';
 
 export default () => {
-  const dispatch = useDispatch();
+  const { setUser } = useUserAction();
   
-  const handleUserClick = () => { dispatch(setUser({ userType: 'user' })) };
-  const handleAdminClick = () => { dispatch(setUser({ userType: 'admin' })) };
-  const handleSuperAdminClick = () => { dispatch(setUser({ userType: 'superAdmin' })) };
+  const handleUserClick = () => setUser({ userType: 'user' });
+  const handleAdminClick = () => setUser({ userType: 'admin' });
+  const handleSuperAdminClick = () => setUser({ userType: 'superAdmin' });
 
   return (
     <div className="sign-in">

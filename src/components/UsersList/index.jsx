@@ -1,19 +1,19 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
-import useUser from '../../containers/UserContext';
+import { useUserStore } from '../../hooks';
 
 export default ({ users }) => {
   const match = useRouteMatch();
-  const user = useUser();
+  const user = useUserStore();
   return (
   <ul>
     {users && users.map(({ userName, userId, userType }) => (
-      <li>
+      <li key={userName}>
         <ul>
           <li key={userName}>{userName}</li>
           <li key={userId}>{userId}</li>
           <li key={userType}>{userType}</li>
-          {(user._userType === 'admin' || user._userType === 'superAdmin') && (
+          {(user.userType === 'admin' || user.userType === 'superAdmin') && (
             <>
             <li key={`${match.url}/update/${userId}`}>
               <Link to={`${match.url}/update/${userId}`}>

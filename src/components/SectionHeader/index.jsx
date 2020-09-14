@@ -5,9 +5,9 @@ export default ({ title, count, children }) => (
   <h3 className="section-header">
     <span className="section-header__headline">
       {title} 
-      <span className="section-header__count" >
+      {count && <span className="section-header__count" >
         {count}
-      </span>
+      </span>}
     </span>
     {children}
   </h3>

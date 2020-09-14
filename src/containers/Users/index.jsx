@@ -1,30 +1,34 @@
 import React, { useCallback } from 'react';
 import { Route, useParams } from 'react-router-dom';
-import { useUserQuery } from '../../hooks';
-import useUser from '../UserContext';
+import { useGet, useUserStore } from '../../hooks';
 import { UpdateUserPanel } from '..'
 import { UsersMenu, UsersList, UsersSectionHeader } from '../../components';
 import './index.scss';
 
 export default () => {
   const { userType } = useParams();
-  const user = useUser();
+  const user = useUserStore();
 
   // Object reference equality is always false so we use call back to memoize the value before
   // passing it to the hook. Then it is executed in hook as a function.
   const params = useCallback(() => ({ type: userType }), [userType]);
-  const [refresh, users] = useUserQuery(user, `/users`, params);
+  const [users, isLoading, error, refresh] = useGet(`/users`, params, 'Failed to load users data.');
   const handleRefresh = () => refresh();
 
-  if (!user) return 'Loading user...'
+  if (error) {
+    return 'Error div goes here.';
+  };
+  
+  if (isLoading) return 'Loading user data...';
+  
   return (
     <>
       <div className="users">
-        <UsersMenu user={user}/>
+        <UsersMenu user={user} />
         <div className="users__info">
-          <UsersSectionHeader count={users ? users.count : null}/>
+          <UsersSectionHeader count={users && users.count}/>
           <button onClick={handleRefresh} className="users__refresh">Refresh</button>
-          <UsersList users={users ? users.users : []} user={user} />
+          <UsersList users={users && users.users} />
         </div>
       </div>
       <div className="users__panel">
