@@ -1,12 +1,14 @@
 import React from 'react'
-import { useNotificationAction } from '..';
+import { useNotificationAction, useUserStore } from '..';
 import { Put } from '../../classes';
 
 export default (endpoint, params) => {
+  const { userType } = useUserStore();
+
   // Hooks can only be called in the body of react functions. In order to use the notification banner Provider
   // we call theerror and success handlers here and then pass them to the class instance for use.
   const { errorMessage, successMessage } = useNotificationAction();
-  const put = new Put(endpoint, params, errorMessage, successMessage); 
+  const put = new Put(endpoint,  { access: userType, ...params }, errorMessage, successMessage); 
 
   return put;
 };

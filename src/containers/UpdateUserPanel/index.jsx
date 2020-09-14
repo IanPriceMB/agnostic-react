@@ -1,12 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { usePut, useUserStore } from '../../hooks';
+import { usePut } from '../../hooks';
 import { Panel, UserForm } from '../../components';
 
 export default () => {
   const { userId, userType } = useParams();
-  const user = useUserStore();
-  const put = usePut(`/users/${userId}`, { access: user.userType });
+  const put = usePut(`/users/${userId}`);
   
   const handleSubmit = (data) => put.call(data);
   

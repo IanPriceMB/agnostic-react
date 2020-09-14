@@ -3,6 +3,7 @@ import useGet from './useGet';
 import { NotificationProvider, useNotificationStore, useNotificationAction } from './useNotificationStore';
 import usePost from './usePost';
 import usePut from './usePut';
+import useUsers from './useUsers';
 import { UserProvider, useUserStore, useUserAction } from './useUserStore';
 
 
@@ -14,6 +15,7 @@ export {
   useNotificationAction,
   usePost,
   usePut,
+  useUsers,
   UserProvider,
   useUserStore,
   useUserAction,
