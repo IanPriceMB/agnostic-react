@@ -8,8 +8,6 @@ import './index.scss';
 export default () => {
   const [users, isLoading, error, refresh] = useUsers();
 
-  const handleRefresh = () => refresh();
-
   if (error) return 'Error div goes here.';
 
   if (isLoading) return 'Loading user data...';
@@ -20,7 +18,7 @@ export default () => {
         <UsersMenu />
         <div className="users__info">
           <UsersSectionHeader count={users && users.count}/>
-          <button onClick={handleRefresh} className="users__refresh">Refresh</button>
+          <button onClick={refresh} className="users__refresh">Refresh</button>
           <UsersList users={users && users.users} />
         </div>
       </div>
