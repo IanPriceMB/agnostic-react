@@ -7,7 +7,7 @@ export default () => {
   const { userId, userType } = useParams();
   const put = usePut(`/users/${userId}`);
   
-  const handleSubmit = (data) => put.call(data);
+  const handleSubmit = (data) => put.exec(data);
   
   return (
     <Panel closeUrl={`/${userType}`}>

@@ -9,13 +9,24 @@ export default class Post {
     this._successHandler = successHandler;
   }
 
-  async call(body) {
-    const query = queryString.stringify(this._params);
+  validate() {
+    if (!this._params.access) {
+      this._errorHandler('Error: Pre POST validation failed.')
+      return false
+    } else {
+      return true
+    }
+  }
+
+  async exec(body) {
     try {
-      const res = await postData(`${this._endpoint}${this._params && `?${query}`}`, body); 
-      const data = await res.json();
-      if (data.error) this._errorHandler(`Error: ${data.error}`);
-      if (data.success) this._successHandler(`Sucessfully created!`);
+      if(this.validate()) {
+        const query = queryString.stringify(this._params);
+        const res = await postData(`${this._endpoint}${this._params && `?${query}`}`, body); 
+        const data = await res.json();
+        if (data.error) this._errorHandler(`Error: ${data.error}`);
+        if (data.success) this._successHandler(`Sucessfully created!`);
+      }
     } catch (error) {
       console.error(error);
       this._errorHandler(`Error: There was an error creating the data.`);

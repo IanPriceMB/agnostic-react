@@ -11,7 +11,7 @@ export default () => {
   // Here we use history.goBack() because modals block a user from being able to select anything else on the screen.
   // This means it is safe to use a go back as they will always return  to the right location.
   const handleCancel = () => history.goBack();
-  const handleConfirm = () => { deleteMethod.call(); history.goBack(); };
+  const handleConfirm = () => { deleteMethod.exec(); history.goBack(); };
 
   return (
     <Modal>
