@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const basicUsers = require('./users');
 
+// THIS APP DOESN'T USE A DATABASE
+
+// Simple CRUD opporations they will refresh when the server is restarted.
+
+// All the magic happens on the front end with the hooks!
+
 router.get('/', (req, res, next) => {
   const { type } = req.query;
   let users = [];

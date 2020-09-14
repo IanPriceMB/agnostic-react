@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 
 export default ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
+
+  // This form can be used anywhere. Right now it is used for both the POST and PUT
+  // methods so instead of defining on submit in the form we pass it via props.
   return (
     <form onSubmit={handleSubmit(onSubmit)} autoComplete="off">
       <label>User Name:</label>

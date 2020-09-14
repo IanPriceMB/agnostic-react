@@ -1,3 +1,13 @@
+1.) make a .env.local with REACT_APP_API_ENDPOINT=http://localhost:3001
+2.) run yarn
+3.) run yarn start
+
+That's all there is to it!
+
+
+***************************************************************************************************************************************************
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -1,0 +1,23 @@
+.user-list {
+    list-style: none;
+    margin: 0;
+    padding: 12px 0;
+    &__row {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+    &__row-list {
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0;
+    };
+    &__row-item {
+      margin-right: 24px;
+      width: 200px;
+      button {
+        padding: 12px;
+      }
+    }
+}

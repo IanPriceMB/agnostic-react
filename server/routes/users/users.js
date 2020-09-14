@@ -1,3 +1,5 @@
+// Not using a database just this big list
+
 module.exports = [
   {
     userName: 'Ruby Rose',

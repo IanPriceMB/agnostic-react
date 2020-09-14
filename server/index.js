@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
  
 app.use(bodyParser.json())
 
+// Server healthcheck
 app.get('/', (req, res) => {
   res.json({
     test: 'working',
