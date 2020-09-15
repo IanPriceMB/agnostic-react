@@ -13,25 +13,13 @@ export default () => {
   return (
     <div className="sign-in">
       <Link to="/users" >
-        <button
-          onClick={handleUserClick}
-        >
-          User
-        </button>
+        <button onClick={handleUserClick}>User</button>
       </Link>
       <Link to="/users" >
-        <button
-          onClick={handleAdminClick}
-        >
-          Admin
-        </button>
+        <button onClick={handleAdminClick}>Admin</button>
       </Link>
       <Link to="/users" >
-        <button
-          onClick={handleSuperAdminClick}
-        >
-          Super Admin
-        </button>
+        <button onClick={handleSuperAdminClick}>Super Admin</button>
       </Link>
     </div>
   );

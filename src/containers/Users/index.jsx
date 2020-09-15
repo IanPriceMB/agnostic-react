@@ -17,7 +17,7 @@ export default () => {
       <div className="users">
         <UsersMenu />
         <div className="users__info">
-          <UsersSectionHeader count={users && users.count}/>
+          <UsersSectionHeader count={users && users.count} />
           <button onClick={refresh} className="users__refresh">Refresh</button>
           <UsersList users={users && users.users} />
         </div>
@@ -26,5 +26,5 @@ export default () => {
         <Route path={`/:userType/update/:userId`} component={UpdateUserPanel} />
       </div>
     </>
-  )
-}
+  );
+};
