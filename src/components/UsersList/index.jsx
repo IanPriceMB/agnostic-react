@@ -8,13 +8,13 @@ export default ({ users }) => {
   const user = useUserStore();
   return (
   <ul className="user-list">
-    {users && users.map(({ userName, userId, userType }) => (
+    {users && [...users].sort((a, b)  => a.userName > b.userName ? 1 : -1).map(({ userName, userId, userType }) => (
       <li key={userName} className="user-list__row">
         <ul className="user-list__row-list">
           <li className="user-list__row-item" key={userName}>{userName}</li>
           <li className="user-list__row-item" key={userId}>{userId}</li>
           <li className="user-list__row-item" key={userType}>{userType}</li>
-          {(user.userType === 'admin' || user.userType === 'superAdmin') && (
+          {(user.userType === 'admin' || user.userType === 'super-admin') && (
             <>
             <li className="user-list__row-item" key={`${match.url}/update/${userId}`}>
               <Link to={`${match.url}/update/${userId}`}>

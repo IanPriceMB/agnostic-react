@@ -7,7 +7,7 @@ export const initialState = {
   isLoading: false,
   userName: 'Ian',
   userId: 1234,
-  userType: 'superAdmin',
+  userType: 'super-admin',
 };
 
 export default (state, { type, payload }) => {

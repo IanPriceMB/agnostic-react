@@ -6,11 +6,11 @@ import { UsersMenu, UsersList, UsersSectionHeader } from '../../components';
 import './index.scss';
 
 export default () => {
-  const [users, isLoading, error, refresh] = useUsers();
-
-  if (error) return 'Error div goes here.';
+  const [isLoading, error, users] = useUsers();
 
   if (isLoading) return 'Loading user data...';
+
+  if (error) return 'Error div goes here.';
   
   return (
     <>
@@ -18,7 +18,6 @@ export default () => {
         <UsersMenu />
         <div className="users__info">
           <UsersSectionHeader count={users && users.count} />
-          <button onClick={refresh} className="users__refresh">Refresh</button>
           <UsersList users={users && users.users} />
         </div>
       </div>

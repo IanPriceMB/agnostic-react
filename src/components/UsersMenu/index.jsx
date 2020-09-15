@@ -17,7 +17,7 @@ export default () => {
           </button>
         </Link>
       </div>
-      {(userType === 'admin' || userType === 'superAdmin') && (
+      {(userType === 'admin' || userType === 'super-admin') && (
         <div className="user-menu__item">
           <Link to="/admins">
             <button>
@@ -26,7 +26,7 @@ export default () => {
           </Link>
         </div>
       )}
-      {userType === 'superAdmin' && (
+      {userType === 'super-admin' && (
         <div className="user-menu__item">
           <Link to="/super-admins">
             <button>

@@ -1,17 +1,16 @@
 import React from 'react';
-import { useHistory, useParams } from 'react-router-dom';
-import { useDelete } from '../../hooks';
+import { useHistory } from 'react-router-dom';
 import { Modal } from '../../components';
+import { useUserDelete } from '../../hooks';
 
 export default () => {
   const history = useHistory();
-  const { userId } = useParams();
-  const deleteMethod = useDelete(`/users/${userId}`);
+  const onConfirm = useUserDelete();
   
   // Here we use history.goBack() because modals block a user from being able to select anything else on the screen.
   // This means it is safe to use a go back as they will always return  to the right location.
   const handleCancel = () => history.goBack();
-  const handleConfirm = () => { deleteMethod.exec(); history.goBack(); };
+  const handleConfirm = () => { onConfirm(); history.goBack(); };
 
   return (
     <Modal>

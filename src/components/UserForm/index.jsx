@@ -25,7 +25,7 @@ export default ({ onSubmit }) => {
         <option value="">Select...</option>
         <option value="user">User</option>
         <option value="admin">Admin</option>
-        <option value="superAdmin">SuperAdmin</option>
+        <option value="super-admin">super-admin</option>
       </select>
       {errors.userType && <p>{errors.userType.message}</p>}
       <input type="submit" />

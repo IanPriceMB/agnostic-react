@@ -1,13 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { usePut } from '../../hooks';
 import { Panel, UserForm } from '../../components';
+import { useUserPut } from '../../hooks';
 
 export default () => {
-  const { userId, userType } = useParams();
-  const put = usePut(`/users/${userId}`);
+  const { userType } = useParams();
+  const onSubmit = useUserPut();
   
-  const handleSubmit = (data) => put.exec(data);
+  const handleSubmit = (data) => onSubmit(data);
   
   return (
     <Panel closeUrl={`/${userType}`}>

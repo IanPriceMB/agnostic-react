@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
       users = basicUsers.filter(ele => ele.userType === 'admin').filter(ele => !ele.deleted);
       break;
     case 'super-admins':
-      users = basicUsers.filter(ele => ele.userType === 'superAdmin').filter(ele => !ele.deleted);
+      users = basicUsers.filter(ele => ele.userType === 'super-admin').filter(ele => !ele.deleted);
       break;
     default:
       users = basicUsers.filter(ele => ele.userType === 'user').filter(ele => !ele.deleted);
@@ -42,7 +42,7 @@ router.post('/', (req, res, next) => {
   } else if (access === 'user' && userType !== 'user') {
     res.status(500).send({ error: 'Not authorized to create this type of user.'});
     return;
-  } else if (access === 'admin' && userType === 'superAdmin') {
+  } else if (access === 'admin' && userType === 'super-admin') {
     res.status(500).send({ error: 'Not authorized to create this type of user.'});
     return;
   } else {
@@ -73,7 +73,7 @@ router.put('/:userId', (req, res, next) => {
   } else if (access === 'user' && user.userType !== 'user') {
     res.status(500).send({ error: 'Not authorized to update this type of user.'});
     return;
-  } else if (access === 'admin' && user.userType === 'superAdmin') {
+  } else if (access === 'admin' && user.userType === 'super-admin') {
     res.status(500).send({ error: 'Not authorized to update this type of user.'});
     return;
   } else {
@@ -100,7 +100,7 @@ router.delete('/:userId', (req, res, next) => {
   } else if (access === 'user' && user.userType !== 'user') {
     res.status(500).send({ error: 'Not authorized to delete this type of user.'});
     return;
-  } else if (access === 'admin' && user.userType === 'superAdmin') {
+  } else if (access === 'admin' && user.userType === 'super-admin') {
     res.status(500).send({ error: 'Not authorized to delete this type of user.'});
     return;
   } else {

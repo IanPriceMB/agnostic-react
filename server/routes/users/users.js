@@ -4,22 +4,22 @@ module.exports = [
   {
     userName: 'Ruby Rose',
     userId: 1,
-    userType: 'superAdmin'
+    userType: 'super-admin'
   },
   {
     userName: 'Weiss Schnee',
     userId: 2,
-    userType: 'superAdmin'
+    userType: 'super-admin'
   },
   {
     userName: 'Yang Xiao Long',
     userId: 3,
-    userType: 'superAdmin'
+    userType: 'super-admin'
   },
   {
     userName: 'Blake Belladonna',
     userId: 4,
-    userType: 'superAdmin'
+    userType: 'super-admin'
   },
   {
     userName: 'Jaune Arc',

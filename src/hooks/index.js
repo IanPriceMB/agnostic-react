@@ -1,20 +1,18 @@
-import useDelete from './useDelete';
-import useGet from './useGet';
 import { NotificationProvider, useNotificationStore, useNotificationAction } from './useNotificationStore';
-import usePost from './usePost';
-import usePut from './usePut';
+import useUserDelete from './useUserDelete';
+import useUserPost from './useUserPost';
+import useUserPut from './useUserPut';
 import useUsers from './useUsers';
 import { UserProvider, useUserStore, useUserAction } from './useUserStore';
 
 
 export {
-  useDelete,
-  useGet,
   NotificationProvider,
   useNotificationStore,
   useNotificationAction,
-  usePost,
-  usePut,
+  useUserDelete,
+  useUserPost,
+  useUserPut,
   useUsers,
   UserProvider,
   useUserStore,

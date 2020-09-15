@@ -8,7 +8,7 @@ export default () => {
   
   const handleUserClick = () => setUser({ userType: 'user' });
   const handleAdminClick = () => setUser({ userType: 'admin' });
-  const handleSuperAdminClick = () => setUser({ userType: 'superAdmin' });
+  const handlesuperAdminClick = () => setUser({ userType: 'super-admin' });
 
   return (
     <div className="sign-in">
@@ -19,7 +19,7 @@ export default () => {
         <button onClick={handleAdminClick}>Admin</button>
       </Link>
       <Link to="/users" >
-        <button onClick={handleSuperAdminClick}>Super Admin</button>
+        <button onClick={handlesuperAdminClick}>Super Admin</button>
       </Link>
     </div>
   );

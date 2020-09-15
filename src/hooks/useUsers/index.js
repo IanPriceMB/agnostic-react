@@ -1,14 +1,11 @@
-import { useCallback } from 'react';
+import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
-import { useGet } from '..';
+import { getData } from '../../utils';
 
 export default () => {
   const { userType } = useParams();
+  const endpoint = `/users?type=${userType}`
+  const { isLoading, error, data } = useQuery(['users', userType], async() => await (await getData(endpoint)).json())
 
-  // Object reference equality is always false so we use call back to memoize the value before
-  // passing it to the hook. Then it is executed in hook as a function.
-  const params = useCallback(() => ({ type: userType }), [userType]);
-  const [users, isLoading, error, refresh] = useGet(`/users`, params, 'Failed to load users data.');
-
-  return [users, isLoading, error, refresh];
+  return [isLoading, error, data];
 }
